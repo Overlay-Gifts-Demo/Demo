@@ -25,7 +25,6 @@
     * { box-sizing: border-box; }
     body { margin: 0; background: transparent; overflow: hidden; font-family: var(--font-body); }
 
-    /* ── CURTAIN ── */
     #blackCurtain {
       position: fixed; inset: 0;
       background: var(--obsidian);
@@ -34,119 +33,49 @@
       justify-content: center; align-items: center; gap: 32px;
       transition: opacity 0.8s cubic-bezier(0.4,0,0.2,1);
     }
-
     .curtain-emblem { width: 64px; height: 64px; }
     .curtain-emblem svg { width: 100%; height: 100%; animation: spin 10s linear infinite; }
     @keyframes spin { to { transform: rotate(360deg); } }
-
-    .curtain-wordmark {
-      font-family: var(--font-display);
-      font-weight: 300; font-size: 26px;
-      letter-spacing: 0.48em; color: var(--gold);
-      text-transform: uppercase;
-    }
-    .curtain-tagline {
-      font-family: var(--font-body);
-      font-size: 9px; font-weight: 400;
-      letter-spacing: 0.38em; color: rgba(201,168,76,0.4);
-      text-transform: uppercase; margin-top: -20px;
-    }
-
+    .curtain-wordmark { font-family: var(--font-display); font-weight: 300; font-size: 26px; letter-spacing: 0.48em; color: var(--gold); text-transform: uppercase; }
+    .curtain-tagline { font-family: var(--font-body); font-size: 9px; font-weight: 400; letter-spacing: 0.38em; color: rgba(201,168,76,0.4); text-transform: uppercase; margin-top: -20px; }
     .loader-track { width: 100px; height: 1px; background: rgba(201,168,76,0.12); position: relative; overflow: hidden; }
-    .loader-fill { position: absolute; top:0; left:-100%; width:100%; height:100%;
-      background: linear-gradient(90deg, transparent, var(--gold), transparent);
-      animation: sweep 1.7s ease-in-out infinite; }
+    .loader-fill { position: absolute; top:0; left:-100%; width:100%; height:100%; background: linear-gradient(90deg, transparent, var(--gold), transparent); animation: sweep 1.7s ease-in-out infinite; }
     @keyframes sweep { 0%{left:-100%} 100%{left:100%} }
 
-    /* ── CORNER BRANDING ── */
-    #cornerMark {
-      position: fixed; top: 20px; left: 20px; z-index: 1000;
-      pointer-events: none; opacity: 0; transition: opacity 0.8s ease 0.4s;
-    }
+    #cornerMark { position: fixed; top: 20px; left: 20px; z-index: 1000; pointer-events: none; opacity: 0; transition: opacity 0.8s ease 0.4s; }
     #cornerMark.visible { opacity: 1; }
     .corner-name { display: block; font-family: var(--font-display); font-weight: 300; font-size: 14px; letter-spacing: 0.38em; color: var(--gold); text-transform: uppercase; }
     .corner-sub  { display: block; font-family: var(--font-body); font-size: 8px; font-weight: 400; letter-spacing: 0.3em; color: rgba(201,168,76,0.38); text-transform: uppercase; margin-top: 3px; }
 
-    /* ── SCAN HINT ── */
-    #scanHint {
-      position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%);
-      z-index: 90; text-align: center; pointer-events: none;
-      opacity: 0; transition: opacity 0.6s ease;
-      display: flex; flex-direction: column; align-items: center; gap: 18px;
-      background: transparent;
-    }
+    #scanHint { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%); z-index: 90; text-align: center; pointer-events: none; opacity: 0; transition: opacity 0.6s ease; display: flex; flex-direction: column; align-items: center; gap: 18px; background: transparent; }
     #scanHint.visible { opacity: 1; }
-
     .scan-frame { width: 150px; height: 150px; position: relative; }
     .sf-corner { position: absolute; width: 28px; height: 28px; border-color: var(--gold); border-style: solid; opacity: 0.65; }
     .sf-tl { top:0; left:0;  border-width: 1px 0 0 1px; }
     .sf-tr { top:0; right:0; border-width: 1px 1px 0 0; }
     .sf-bl { bottom:0; left:0;  border-width: 0 0 1px 1px; }
     .sf-br { bottom:0; right:0; border-width: 0 1px 1px 0; }
-    .scan-line {
-      position: absolute; left: 0; right: 0; height: 1px;
-      background: linear-gradient(90deg, transparent, var(--gold), transparent);
-      animation: scanmove 2.2s ease-in-out infinite;
-    }
+    .scan-line { position: absolute; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); animation: scanmove 2.2s ease-in-out infinite; }
     @keyframes scanmove { 0%{top:8%;opacity:0} 10%{opacity:1} 90%{opacity:1} 100%{top:92%;opacity:0} }
     .scan-text { font-family: var(--font-body); font-size: 9px; font-weight: 400; letter-spacing: 0.35em; color: rgba(201,168,76,0.5); text-transform: uppercase; }
 
-    /* ── BUTTON PANEL ── */
-    .button-panel {
-      position: fixed; bottom: 0; left: 0; right: 0; display: none;
-      z-index: 100; padding-bottom: max(30px, env(safe-area-inset-bottom));
-      pointer-events: none;
-    }
+    .button-panel { position: fixed; bottom: 0; left: 0; right: 0; display: none; z-index: 100; padding-bottom: max(30px, env(safe-area-inset-bottom)); pointer-events: none; }
     .button-inner { display: flex; justify-content: center; }
-    .button-glass {
-      background: rgba(8,8,8,0.75);
-      backdrop-filter: blur(24px) saturate(1.3);
-      -webkit-backdrop-filter: blur(24px) saturate(1.3);
-      border: 1px solid rgba(201,168,76,0.2);
-      border-radius: 999px;
-      padding: 6px 6px 6px 22px;
-      display: flex; align-items: center; gap: 16px;
-      pointer-events: all;
-      box-shadow: 0 0 0 1px rgba(0,0,0,0.5), 0 10px 40px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.03);
-      animation: panelRise 0.5s cubic-bezier(0.34,1.56,0.64,1) both;
-    }
+    .button-glass { background: rgba(8,8,8,0.75); backdrop-filter: blur(24px) saturate(1.3); -webkit-backdrop-filter: blur(24px) saturate(1.3); border: 1px solid rgba(201,168,76,0.2); border-radius: 999px; padding: 6px 6px 6px 22px; display: flex; align-items: center; gap: 16px; pointer-events: all; box-shadow: 0 0 0 1px rgba(0,0,0,0.5), 0 10px 40px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.03); animation: panelRise 0.5s cubic-bezier(0.34,1.56,0.64,1) both; }
     @keyframes panelRise { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
-
     .panel-label { font-family: var(--font-body); font-size: 10px; font-weight: 400; letter-spacing: 0.28em; color: rgba(201,168,76,0.55); text-transform: uppercase; white-space: nowrap; }
-
-    .plan-button {
-      appearance: none; border: none; cursor: pointer;
-      width: 46px; height: 46px; border-radius: 50%;
-      background: linear-gradient(145deg, var(--gold-light), #B8923C);
-      display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 2px 14px rgba(201,168,76,0.45), inset 0 1px 0 rgba(255,255,255,0.28);
-      transition: transform 0.15s ease, box-shadow 0.15s ease;
-      flex-shrink: 0; position: relative;
-    }
+    .plan-button { appearance: none; border: none; cursor: pointer; width: 46px; height: 46px; border-radius: 50%; background: linear-gradient(145deg, var(--gold-light), #B8923C); display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 14px rgba(201,168,76,0.45), inset 0 1px 0 rgba(255,255,255,0.28); transition: transform 0.15s ease, box-shadow 0.15s ease; flex-shrink: 0; position: relative; }
     .plan-button::before { content:''; position:absolute; inset:0; border-radius:50%; background: radial-gradient(circle at 35% 35%, rgba(255,255,255,0.22), transparent 58%); }
     .plan-button:active  { transform: scale(0.92); box-shadow: 0 1px 6px rgba(201,168,76,0.25); }
     .btn-icon { position: relative; z-index:1; width:15px; height:15px; fill: #0a0a0a; }
 
-    /* ── INSTAGRAM ── */
-    #instagramButton {
-      position: fixed; bottom: max(28px, env(safe-area-inset-bottom)); right: 20px;
-      width: 46px; height: 46px; z-index: 100000; cursor: pointer;
-      background: rgba(8,8,8,0.75);
-      backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
-      border: 1px solid rgba(201,168,76,0.2); border-radius: 14px;
-      display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.03);
-      transition: transform 0.2s ease, border-color 0.2s ease;
-      text-decoration: none;
-    }
+    #instagramButton { position: fixed; bottom: max(28px, env(safe-area-inset-bottom)); right: 20px; width: 46px; height: 46px; z-index: 100000; cursor: pointer; background: rgba(8,8,8,0.75); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border: 1px solid rgba(201,168,76,0.2); border-radius: 14px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.03); transition: transform 0.2s ease, border-color 0.2s ease; text-decoration: none; }
     #instagramButton img { width: 25px; height: 25px; border-radius: 5px; }
     #instagramButton:hover  { transform: scale(1.08); border-color: rgba(201,168,76,0.5); }
     #instagramButton:active { transform: scale(0.94); }
 
-    /* ── AR ── */
     a-scene, .a-canvas { background-color: transparent !important; }
     [class^="mindar-ui"],[id^="mindar-ui"],.mindar-ui-overlay { display:none !important; visibility:hidden !important; opacity:0 !important; }
-
     body.ar-active { background: transparent !important; }
   </style>
 </head>
@@ -205,34 +134,35 @@
   </div>
 </div>
 
-<!-- AR SCENE -->
+<!-- AR SCENE — SPEED OPTIMISED -->
 <a-scene
-  mindar-image="imageTargetSrc: ./targets.mind; uiLoading: no; uiError: no;"
+  mindar-image="imageTargetSrc: ./targets.mind;
+                uiLoading: no;
+                uiError: no;
+                filterMinCF: 0.001;
+                filterBeta: 1000;
+                missTolerance: 0;
+                warmupTolerance: 0"
   vr-mode-ui="enabled: false"
   device-orientation-permission-ui="enabled: false"
-  renderer="antialias: true; alpha: true">
+  renderer="antialias: true;
+            alpha: true;
+            physicallyCorrectLights: false;
+            highRefreshRate: true;
+            maxCanvasWidth: 1920;
+            maxCanvasHeight: 1080">
 
   <a-assets>
-    <!--
-      FIX 3: No crossorigin restriction — removed crossorigin="anonymous"
-      so multiple users can access the video stream simultaneously
-      without CORS-triggered session conflicts.
-    -->
-    <video id="driveVideo" playsinline preload="auto" loop></video>
+    <video id="driveVideo" playsinline preload="metadata" loop></video>
   </a-assets>
 
   <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
   <a-entity id="target1" mindar-image-target="targetIndex: 0">
-    <!--
-      FIX 1 & 2: Plane is now 16:9 (1080p ratio → width=1.7778, height=1).
-      No crop — material uses default repeat: 1 1; offset: 0 0
-      so the full video frame is shown without any center-fill cropping.
-    -->
     <a-plane
       id="videoPlane"
       width="1"
-      height=".562"
+      height="0.562"
       visible="false"
       material="src: #driveVideo; side: double; transparent: true; repeat: 1 1; offset: 0 0">
     </a-plane>
@@ -243,7 +173,6 @@
   const API_KEY   = "AIzaSyCbnQPV-ZMsmYb5Uy9gid8FvTY3GWmOk0Y";
   const FOLDER_ID = "11Ycfb9CDuqrFAEQQEkQBkX0QmXhqAmeI";
 
-  /* ── CHROMA KEY SHADER ── */
   AFRAME.registerShader('chromakey', {
     schema: {
       src:        { type: 'map' },
@@ -264,10 +193,7 @@
           similarity: { value: data.threshold },
           smoothness: { value: data.smoothness }
         },
-        vertexShader: `
-          varying vec2 vUv;
-          void main(){ vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0); }
-        `,
+        vertexShader: `varying vec2 vUv; void main(){ vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0); }`,
         fragmentShader: `
           uniform sampler2D tex;
           uniform vec3 keyColor;
@@ -291,13 +217,6 @@
     }
   });
 
-  /*
-    FIX 3: Fetch video URL without cache-busting per session.
-    Uses a public URL with no session token so unlimited concurrent
-    users can stream the same file simultaneously from Google Drive.
-    pageSize kept at 1 (latest video) but the URL itself is stateless
-    — no per-user locking or session binding.
-  */
   async function getLatestVideo() {
     const url = `https://www.googleapis.com/drive/v3/files`
       + `?q='${FOLDER_ID}'+in+parents+and+mimeType+contains+'video/'`
@@ -344,11 +263,6 @@
       scanHint.classList.add("visible");
     });
 
-    /*
-      FIX 1 & 2: No auto-crop logic.
-      The plane is already 16:9. We only show the video as-is
-      without modifying repeat or offset — full frame, no crop.
-    */
     videoEl.addEventListener('playing', () => {
       videoPlane.setAttribute('visible', 'true');
     });
@@ -358,10 +272,6 @@
       panel.style.display = "block";
       const fileId = await getLatestVideo();
       if (fileId) {
-        /*
-          FIX 3: Build a fully public, sessionless streaming URL.
-          No user-specific tokens — safe for unlimited concurrent viewers.
-        */
         const src = `https://www.googleapis.com/drive/v3/files/${fileId}?alt=media&key=${API_KEY}`;
         if (videoEl.src !== src) {
           videoEl.src = src;
